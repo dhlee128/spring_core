@@ -10,9 +10,8 @@ public class OrderServiceImpl implements OrderService {
     private final MemberRepository memberRepository;
     //할인 정책
     private final DiscountPolicy discountPolicy;
-
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy
-            discountPolicy) {
+    //생성자 주입(외부에서 구현체를 주입)
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
@@ -20,10 +19,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
 
-        Member member = memberRepository.findById(memberId);
-        int discountPrice = discountPolicy.discount(member, itemPrice);
+        Member member = memberRepository.findById(memberId);//회원 찾기
+        int discountPrice = discountPolicy.discount(member, itemPrice);//해당 회원 할인 금액
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
 }
+
+
 
