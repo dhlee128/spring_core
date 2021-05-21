@@ -10,6 +10,7 @@ public class OrderServiceImpl implements OrderService {
     private final MemberRepository memberRepository;
     //할인 정책
     private final DiscountPolicy discountPolicy;
+
     //생성자 주입(외부에서 구현체를 주입)
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
@@ -23,6 +24,11 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice);//해당 회원 할인 금액
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
 
