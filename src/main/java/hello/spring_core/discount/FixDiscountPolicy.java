@@ -2,6 +2,8 @@ package hello.spring_core.discount;
 
 import hello.spring_core.member.Grade;
 import hello.spring_core.member.Member;
+import org.springframework.stereotype.Component;
+
 //VIP 회원만 천원 할인(Fix)
 public class FixDiscountPolicy implements DiscountPolicy {
 
