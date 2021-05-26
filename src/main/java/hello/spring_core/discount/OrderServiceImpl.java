@@ -2,11 +2,13 @@ package hello.spring_core.discount;
 
 import hello.spring_core.member.Member;
 import hello.spring_core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 //회원 정보를 조회 -> 할인 정책을 적용한 주문 객체 반환
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     //회원 저장소
@@ -14,13 +16,13 @@ public class OrderServiceImpl implements OrderService {
     //할인 정책
     private final DiscountPolicy discountPolicy;
 
-    //생성자 주입(외부에서 구현체를 주입)
-    @Autowired
+    //생성자 주입(외부에서 구현체를 주입) @RequiredArgsConstructor 사용
+    /* @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
-
+    */
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
 
